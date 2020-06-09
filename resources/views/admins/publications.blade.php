@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('title', 'Admin|Publications')
 
@@ -23,15 +23,19 @@
                     <tbody>
                         @foreach ($publications as $publication)
                             <tr>
-                                <td>{{ $publication->author }}</td>
+                                <td>{{ $publication->user->name }}</td>
                                 <td>{{ $publication->title }}</td>
-                                <td>{{ $publication->category }}</td>
+                                <td>{{ $publication->category->name }}</td>
                                 <td>
                                     <a href="{{ route('admins.publications') }}">See Post</a>
                                 </td>
                                 <td>{{ $publication->created_at }}</td>
                                 <td>
-                                    
+                                    <form action="{{ route('publications.destroy', ['id' => $publication->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

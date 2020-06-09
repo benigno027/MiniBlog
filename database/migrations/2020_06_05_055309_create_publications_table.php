@@ -15,10 +15,10 @@ class CreatePublicationsTable extends Migration
     {
         Schema::create('publications', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('user_id');
             $table->string('title', 100);
-            $table->unsignedInteger('category');
+            $table->unsignedInteger('category_id');
             $table->longText('article');
-            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

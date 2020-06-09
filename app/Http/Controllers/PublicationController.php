@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Publication;
 use App\Category;
-use Illuminate\Contracts\View\View;
+use App\Publication;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class PublicationController extends Controller
 {
@@ -14,9 +15,28 @@ class PublicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $publications = Publication::paginate(3);
+        $publications = [];
+        
+        if( isset($request->category_id) && isset($request->order_by) ){
+
+            $publications = Publication::where('category_id', '=', $request->category_id)->orderBy('created_at', $request->order_by)->paginate(1);
+
+        }else if( isset($request->category_id) ){
+
+            $publications = Publication::where('category_id', '=', $request->category_id)->paginate(1);
+
+        }else if( isset($request->order_by) ){
+
+            $publications = Publication::orderBy('created_at', $request->order_by)->paginate(1);
+
+        }else{
+
+            $publications = Publication::orderBy('created_at', 'DESC')->paginate(1);
+
+        }
+        
         return view('publications.index', compact('publications'));
     }
 
@@ -45,7 +65,9 @@ class PublicationController extends Controller
     public function store(Request $request)
     {
         $publication = $request->all();
+        $publication["user_id"] = Auth::id();
         Publication::create($publication);
+        
         return redirect( route('publications.index') );
     }
 
@@ -90,8 +112,10 @@ class PublicationController extends Controller
      * @param  \App\Publication  $publication
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Publication $publication)
+    public function destroy(int $publication_id)
     {
-        //
+        $publication = Publication::find($publication_id);
+        $publication->delete();
+        return redirect( route('admins.publications') );
     }
 }

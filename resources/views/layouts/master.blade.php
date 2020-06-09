@@ -14,25 +14,11 @@
         </style>
     </head>
     <body>
-        <div class="container">
+        <div id="app" class="container">
             
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @include('layout.header')
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            @include('layouts.header')
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            
-
-            @include('layout.list_category')
+            @include('layouts.list_category')
             
             @yield('blog_body')
             
@@ -40,6 +26,6 @@
 
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('js_script')
-
+        
     </body>
 </html>

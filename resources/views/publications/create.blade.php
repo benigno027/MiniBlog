@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 
 @section('title', 'New Post')
 
@@ -17,8 +17,8 @@
                     </div>
                     <div class="form-group">
                         <div class="form-group">
-                          <label for="category">category</label>
-                          <select class="form-control" name="category">
+                          <label for="category_id">category</label>
+                          <select class="form-control" name="category_id">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label>Article</label>
                         <hr>
-                        <textarea class="form-controller" type="text" name="article" cols="30" rows="10"></textarea>
+                        <textarea class="form-controller" style="width:100%;" type="text" name="article" cols="30" rows="10"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Create</button>
