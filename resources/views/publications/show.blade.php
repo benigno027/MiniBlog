@@ -5,6 +5,6 @@
     <h3 class="card-title">{{ $publication->title }} <br> </h3>
     <small>{{ $publication->category->name }}</small>
     
-    <p class="card-text">{{ $publication->article }}</p>
+    <p class="card-text">{{ $publication->description }}</p>
 
 @endsection

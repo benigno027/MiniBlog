@@ -13,13 +13,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $User = new User();
-        
-        $User->name = 'webmaster';
-        $User->email = 'webmaster@miniblog.com';
-        $User->password = Hash::make('miniblog');
-        $User->rol = 'admin';
-        $User->save();
+        $users = [
+            ["name" => "webmaster", "email" => "webmaster@miniblog.com", "password" => "miniblog"],
+            ["name" => "admin.api", "email" => "admin.api@miniblog.com", "password" => "miniblog"],
+        ];
+
+        foreach ($users as $user) {
+            $User = new User();
+            $User->name = $user["name"];
+            $User->email = $user["email"];
+            $User->password = Hash::make(  $user["password"] );
+            $User->rol = 'admin';
+            $User->save();    
+        }
         
     }
 }

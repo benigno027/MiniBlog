@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $demoCategories = [
-            ["name" => "Home", "description" => "Demo category..."],
+            ["name" => "Articles", "description" => "data from api..."],
             ["name" => "Technology", "description" => "Demo category..."],
             ["name" => "Video Game", "description" => "Demo category..."]
         ];

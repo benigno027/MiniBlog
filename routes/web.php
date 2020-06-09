@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+
+use function GuzzleHttp\json_decode;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +39,32 @@ Route::delete('categories/{id}', 'CategoryController@destroy')->name('categories
 Auth::routes();
 
 Route::get('users/home', 'HomeController@index')->name('home');
+
+
+Route::get('api', function(){
+
+    $client = new Client();
+    $res = $client->request('GET', 'https://sq1-api-test.herokuapp.com/posts');
+
+    if( $res->getStatusCode() == "200"){
+    
+        $publications = json_decode( $res->getBody()->getContents() );
+        $user = App\User::where('email', 'admin.api@miniblog.com')->first();
+        $category = App\Category::where('name', 'Articles')->first();
+        
+
+        foreach ($publications->data as $key => $publication) {
+            
+            $new_publication = new App\Publication();
+            $new_publication->user_id = $user->id;
+            $new_publication->title = $publication->title;
+            $new_publication->category_id = $category->id;
+            $new_publication->description = $publication->description;
+            $new_publication->created_at = $publication->publication_date;
+            $new_publication->save();
+
+        }
+
+    }
+    
+});

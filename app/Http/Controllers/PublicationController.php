@@ -21,19 +21,19 @@ class PublicationController extends Controller
         
         if( isset($request->category_id) && isset($request->order_by) ){
 
-            $publications = Publication::where('category_id', '=', $request->category_id)->orderBy('created_at', $request->order_by)->paginate(1);
+            $publications = Publication::where('category_id', '=', $request->category_id)->orderBy('created_at', $request->order_by)->paginate(5);
 
         }else if( isset($request->category_id) ){
 
-            $publications = Publication::where('category_id', '=', $request->category_id)->paginate(1);
+            $publications = Publication::where('category_id', '=', $request->category_id)->paginate(5);
 
         }else if( isset($request->order_by) ){
 
-            $publications = Publication::orderBy('created_at', $request->order_by)->paginate(1);
+            $publications = Publication::orderBy('created_at', $request->order_by)->paginate(5);
 
         }else{
 
-            $publications = Publication::orderBy('created_at', 'DESC')->paginate(1);
+            $publications = Publication::orderBy('created_at', 'DESC')->paginate(5);
 
         }
         

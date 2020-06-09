@@ -18,7 +18,7 @@ class CreatePublicationsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title', 100);
             $table->unsignedInteger('category_id');
-            $table->longText('article');
+            $table->longText('description');
             $table->timestamps();
         });
     }
