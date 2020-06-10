@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\PostAnotherBlog'
     ];
 
     /**
@@ -24,8 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('blog:publications')->everyMinute();
-        //          ->hourly();
+        $schedule->command('blog:publications')->cron('0 */2 * * *');
     }
 
     /**
