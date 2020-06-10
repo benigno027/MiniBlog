@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Publication extends Model
 {
     protected $table = "publications";
-    protected $fillable = ['user_id', 'title', 'category_id', 'article'];
+    protected $fillable = ['user_id', 'title', 'category_id', 'description'];
 
     public function category(){
         return $this->belongsTo(Category::class);

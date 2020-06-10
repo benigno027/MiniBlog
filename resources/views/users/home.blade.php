@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Admin')
+@section('title', 'Dashboard')
 
 @section('blog_body')
 
@@ -13,7 +13,7 @@
                       <a href="{{ route('publications.create') }}">New Publication</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{ route('admins.categories') }}">Setting Profile</a>
+                        <a href="{{ route('users.profile') }}">Setting Profile</a>
                     </li>
                 </ul>
             </div>
@@ -25,16 +25,24 @@
                 <thead class="thead-inverse">
                     <tr>
                         <th>Title</th>
-                        <th>Descripcion</th>
+                        <th>Category</th>
+                        <th>Date</th>
                         <th>Link</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td scope="row"></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        @foreach ($publications as $publication)
+                            <tr>
+                                <td>{{ $publication->title }}</td>
+                                <td>{{ $publication->category->name }}</td>
+                                <td>{{ $publication->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('publications.show', ['id' => $publication->id]) }}" target="blank_">
+                                        See post
+                                    </a>
+                                </td>
+                            </tr>    
+                        @endforeach
                     </tbody>
             </table>
             </div>

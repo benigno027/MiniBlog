@@ -4,23 +4,24 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            
                 
                 @foreach ($publications as $publication)
-                    
+                <div class="col-6">        
                     <div class="card py-4 my-4" style="cursor: pointer;" onclick="window.location='{{ route('publications.show', ['id' => $publication->id]) }}';">
                         <div class="card-body" >
-                            <h3 class="card-title">{{ $publication->title }}</h3>
+                            <h3 class="card-title">{{ $publication->title }} 
+                                <br> 
+                                <small style="color: cadetblue;">{{ $publication->category->name }}</small>
+                            </h3>
+                            <small>{{ $publication->created_at }}</small>
                             <p class="card-text">{{ substr($publication->description, 0, 250) }}...</p>
                         </div>
                     </div>
-                    
+                </div>        
                 @endforeach
                 
-            </div>
-            <div class="col-2">
             
-            </div>
         </div>
         <div class="row">
             <div class="col-12">

@@ -8,9 +8,15 @@
         <title>@yield('title')</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet"> --}}
+        
+        {{-- <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet"> --}}
+
+        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
         <style>
-            * { font-family: 'Shadows Into Light', cursive; }
+            * { font-family: 'Architects Daughter', cursive; }
+            
         </style>
     </head>
     <body>
