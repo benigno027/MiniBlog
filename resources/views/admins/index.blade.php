@@ -10,10 +10,13 @@
     <div class="card-deck">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">User Setting</h5>
+            <h5 class="card-title">Setting</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <a href="{{ route('admins.users') }}">List User</a>
+                </li>
+                <li class="list-group-item">
+                  <a href="{{ route('admins.categories') }}">Setting Categories</a>
                 </li>
             </ul>
           </div>
@@ -21,7 +24,7 @@
         <div class="card">
           
           <div class="card-body">
-            <h5 class="card-title">Post</h5>
+            <h5 class="card-title">Publications</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <a href="{{ route('publications.create') }}">New Publication</a>
